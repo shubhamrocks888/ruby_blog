@@ -1,0 +1,30 @@
+<span> Logged In as:</span> <span> <%= current_user.fname %> </span>
+
+<%= link_to "Home",root_path%>
+<%= link_to 'Back', posts_path %>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+
+<h2> Post </h2>
+<P>Title: <%= @post.title %></p>
+<p>Content: <%= @post.content %></p>
+
+<p>Created By: <%= @post.user.fname%></p>
+
+<%if current_user and current_user.id == @post.user_id %>
+  <%= link_to 'Edit Post', edit_post_path(@post) %>
+<% end %>
+
+<div class="field">
+  <h4>Comments:</h4>
+  <%=  render @post.comments %>
+
+</div>
+  <h4> Add a Comments: </h4>
+  <%=  render 'comments/form' %>
+
+
+<br>
+
+
+
+<br>

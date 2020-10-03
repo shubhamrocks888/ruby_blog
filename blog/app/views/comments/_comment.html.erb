@@ -1,0 +1,9 @@
+
+<div class="field" style="height:40px">
+<b><%= comment.user.fname %></b> has commented: "<%= comment.body %>"
+<% if current_user.id==comment.user.id %>
+
+<%= link_to "Delete", post_comment_path(comment.post_id, comment.id), method: :delete %>
+
+<% end %>
+</div>

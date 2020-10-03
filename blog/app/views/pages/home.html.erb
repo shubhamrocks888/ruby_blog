@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+
+
+</head>
+<body style="background-color:Snow";>
+
+<div class="conatiner">
+<% if current_user %>
+<span> Logged In as:</span> <span> <%= current_user.fname %> </span>
+<% end %>
+
+<% if current_user %>
+  <span><%= link_to "New_Post",new_post_path %></span>
+  <span><%= link_to "Your Posts",posts_path(params: {user_id: current_user.id}) %></span>
+  <span><%= link_to "Sign Out", destroy_user_session_path,method: :delete %></span>
+
+<% else %>
+<div class="d-flex flex-column">
+  <%= link_to "Sign Up", new_user_registration_path %>
+  <%= link_to "Sign In",new_user_session_path %>
+</div>
+
+<% end %>
+
+<h1 style ="color:maroon">POSTS</h1>
+
+<% @post =Post.all.each do |p| %>
+
+  <h3>Title:</h3>  <%= p.title %>
+  <p>Create By:  <%= p.user.fname %> </p>
+
+  <% if current_user %>
+      <%= link_to "Comment",post_path(p.id) %>
+  <% end %>
+
+<% end %>
+<br>
+</div>
+</body>
+</html>

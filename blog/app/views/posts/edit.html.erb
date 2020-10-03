@@ -1,0 +1,9 @@
+<h4> Logged In as:</h4> <p> <%= current_user.email %> </p>
+<%= link_to "Home",root_path%>
+
+<h1>Editing Post</h1>
+
+<%= render 'form', post: @post %>
+
+<%= link_to 'Show', @post %> |
+<%= link_to 'Back', posts_path %>
